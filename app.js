@@ -22,7 +22,7 @@ const chalk = require("chalk"),
   Parser = require("@xmldom/xmldom").DOMParser,
   SessionParticipants = require("samlp/lib/sessionParticipants"),
   SimpleProfileMapper = require("./lib/simpleProfileMapper.js");
-
+require("dotenv").config();
 /**
  * Globals
  */
@@ -696,7 +696,7 @@ function _runServer(argv) {
     }
   });
 
-  app.use(async (req, res, next) => {
+  app.use("/saml/sso", async (req, res, next) => {
     try {
       const rawHeaders = req.rawHeaders;
       const cookieIdx = rawHeaders.indexOf("Cookie");
@@ -807,7 +807,13 @@ function _runServer(argv) {
     samlp.auth(authOptions)(req, res);
   }
 
-  app.get(IDP_PATHS.METADATA, function (req, res, next) {
+  function metaMiddleware(req, res, next) {
+    req.metadata = argv.config.metadata;
+    req.idp = { options: idpOptions };
+    next();
+  }
+
+  app.get(IDP_PATHS.METADATA, metaMiddleware, function (req, res, next) {
     samlp.metadata(req.idp.options)(req, res);
   });
 
