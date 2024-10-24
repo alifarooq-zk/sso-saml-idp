@@ -918,7 +918,7 @@ function _runServer(argv) {
     )}}...\n`
   );
 
-  httpServer.listen(app.get("port"), app.get("host"), function () {
+  httpServer.listen(process.env.PORT || 7000, function () {
     const scheme = argv.https ? "https" : "http",
       { address, port } = httpServer.address(),
       hostname = WILDCARD_ADDRESSES.includes(address)
