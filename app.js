@@ -393,7 +393,7 @@ function _runServer(argv) {
   console.log(
     dedent(chalk`
     Listener Port:
-      {cyan ${argv.host}:${argv.port}}
+      {cyan ${argv.host}}
     HTTPS Enabled:
       {cyan ${argv.https}}
 
@@ -959,6 +959,7 @@ function _runServer(argv) {
     `)
     );
   });
+
   return httpServer;
 }
 
@@ -969,6 +970,7 @@ function runServer(options) {
 
 function main() {
   const args = processArgs(process.argv.slice(2));
+  console.log("🚀 ~ main ~ args:", args);
   _runServer(args.argv);
 }
 
