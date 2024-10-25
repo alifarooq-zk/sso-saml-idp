@@ -699,6 +699,7 @@ function _runServer(argv) {
   });
 
   app.use("/saml/sso", async (req, res, next) => {
+    console.log("Request ===> ", req);
     try {
       const rawHeaders = req.rawHeaders;
       const cookieIdx = rawHeaders.indexOf("Cookie");
