@@ -524,7 +524,7 @@ function _runServer(argv) {
    */
 
   app.set("host", process.env.HOST || argv.host);
-  // app.set("port", process.env.PORT || argv.port);
+  app.set("port", process.env.PORT || argv.port);
   app.set("views", path.join(__dirname, "views"));
 
   /**
