@@ -590,9 +590,10 @@ function _runServer(argv) {
       secret:
         "The universe works on a math equation that never even ever really ends in the end",
       resave: false,
+
       saveUninitialized: true,
       name: "idp_sid",
-      cookie: { maxAge: 60 * 60 * 1000 },
+      cookie: { maxAge: 60 * 60 * 1000, sameSite: false },
     })
   );
 
