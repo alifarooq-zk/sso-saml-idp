@@ -4,6 +4,6 @@ runServer({
   acsUrl: `https://www.coursera.org/api/samlLogin.v1/login`,
   audience: `https://shibboleth.coursera.org/sp`,
   issuer: `khutaPlatform`,
-  // port: process.env.PORT,
-  host: "sso.amiiigo.com",
+  port: process.env.PORT,
+  host: process.env.HOST,
 });
