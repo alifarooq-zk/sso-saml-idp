@@ -1,0 +1,10 @@
+{
+  "apps": [
+    {
+      "name": "Khuta Saml SSO",
+      "script": "npx",
+      "interpreter": "none",
+      "args": "npm run prod"
+    }
+  ]
+}

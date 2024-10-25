@@ -618,6 +618,7 @@ function _runServer(argv) {
   const parseSamlRequest = function (req, res, next) {
     samlp.parseRequest(req, function (err, data) {
       if (err) {
+        console.log(err);
         return res.redirect("https://khuta.om/");
       }
       if (data) {
