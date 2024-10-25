@@ -593,7 +593,7 @@ function _runServer(argv) {
 
       saveUninitialized: true,
       name: "idp_sid",
-      cookie: { maxAge: 60 * 60 * 1000, sameSite: false },
+      cookie: { maxAge: 60 * 60 * 1000, sameSite: "lax" },
     })
   );
 
