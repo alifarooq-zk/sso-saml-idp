@@ -393,7 +393,7 @@ function _runServer(argv) {
   console.log(
     dedent(chalk`
     Listener Port:
-      {cyan ${argv.host}:${argv.port}}
+      {cyan ${argv.host}}
     HTTPS Enabled:
       {cyan ${argv.https}}
 
@@ -523,8 +523,8 @@ function _runServer(argv) {
    * App Environment
    */
 
-  app.set("host", process.env.HOST || argv.host);
-  app.set("port", process.env.PORT || argv.port);
+  app.set("host", "sso.amiiigo.com");
+  app.set("port", "");
   app.set("views", path.join(__dirname, "views"));
 
   /**
@@ -925,13 +925,13 @@ function _runServer(argv) {
     )}}...\n`
   );
 
-  httpServer.listen(app.get("port"), app.get("host"), function () {
+  httpServer.listen(app.get("host"), function () {
     const scheme = argv.https ? "https" : "http",
       { address, port } = httpServer.address(),
       hostname = WILDCARD_ADDRESSES.includes(address)
         ? os.hostname()
         : "localhost",
-      baseUrl = `${scheme}://${hostname}:${port}`;
+      baseUrl = `https://${hostname}`;
 
     console.log(
       dedent(chalk`
@@ -959,6 +959,7 @@ function _runServer(argv) {
     `)
     );
   });
+
   return httpServer;
 }
 
@@ -969,6 +970,7 @@ function runServer(options) {
 
 function main() {
   const args = processArgs(process.argv.slice(2));
+  console.log("🚀 ~ main ~ args:", args);
   _runServer(args.argv);
 }
 
